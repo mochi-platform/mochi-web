@@ -81,7 +81,7 @@ const trustBadges = [
   },
 ] as const
 
-const APK_RELEASE_URL = 'https://github.com/siramong/mochi/releases/latest'
+const APK_RELEASE_URL = 'https://github.com/mochi-platform/mochi-mobile/releases/latest'
 
 export function LandingPage() {
   const { session, loading } = useSession()
