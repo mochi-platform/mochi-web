@@ -4,6 +4,9 @@ const links = [
   { to: '/admin', label: 'Dashboard' },
   { to: '/admin/vouchers', label: 'Vales' },
   { to: '/admin/users', label: 'Usuarios' },
+  { to: '/admin/grants', label: 'Concesiones' },
+  { to: '/admin/recipes', label: 'Recetas' },
+  { to: '/admin/revenue', label: 'Ingresos' },
 ]
 
 export function AdminLayout() {

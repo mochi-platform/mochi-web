@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import type { FormEvent } from 'react'
 import { supabase } from '@/lib/supabase'
-import type { Voucher, VoucherTemplate } from '@/types/database'
+import type { VoucherTemplate } from '@/types/database'
 
 type TemplateForm = {
   id?: string
@@ -22,23 +22,20 @@ const initialForm: TemplateForm = {
 
 export function AdminVouchersPage() {
   const [templates, setTemplates] = useState<VoucherTemplate[]>([])
-  const [vouchers, setVouchers] = useState<Voucher[]>([])
   const [form, setForm] = useState<TemplateForm>(initialForm)
   const [error, setError] = useState<string | null>(null)
 
   const load = async () => {
-    const [tplRes, vouchersRes] = await Promise.all([
+    const [tplRes] = await Promise.all([
       supabase.from('voucher_templates').select('*').order('points_cost', { ascending: true }).returns<VoucherTemplate[]>(),
-      supabase.from('vouchers').select('*').order('created_at', { ascending: false }).limit(30).returns<Voucher[]>(),
     ])
 
-    if (tplRes.error || vouchersRes.error) {
-      setError(tplRes.error?.message ?? vouchersRes.error?.message ?? 'No se pudo cargar vales')
+    if (tplRes.error) {
+      setError(tplRes.error?.message ?? 'No se pudo cargar vales')
       return
     }
 
     setTemplates(tplRes.data ?? [])
-    setVouchers(vouchersRes.data ?? [])
   }
 
   useEffect(() => {
@@ -107,19 +104,6 @@ export function AdminVouchersPage() {
         </div>
       </section>
 
-      <section className="mt-5 rounded-2xl border border-slate-200 bg-white p-4">
-        <h2 className="text-base font-bold text-slate-900">Vales generados</h2>
-        <div className="mt-3 space-y-2">
-          {vouchers.map((voucher) => (
-            <div key={voucher.id} className="flex items-center justify-between rounded-xl bg-slate-100 px-3 py-2">
-              <p className="text-sm font-semibold text-slate-800">{voucher.title} · {voucher.points_cost} pts</p>
-              <span className={`rounded-full px-2 py-1 text-xs font-bold ${voucher.is_redeemed ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'}`}>
-                {voucher.is_redeemed ? 'Canjeado' : 'Pendiente'}
-              </span>
-            </div>
-          ))}
-        </div>
-      </section>
     </div>
   )
 }

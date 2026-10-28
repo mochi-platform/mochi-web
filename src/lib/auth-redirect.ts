@@ -1,5 +1,5 @@
 const AUTH_CALLBACK_PATH = '/auth/callback'
-export const POST_AUTH_REDIRECT_PATH = '/dashboard'
+export const POST_AUTH_REDIRECT_PATH = '/account'
 
 function sanitizeBaseUrl(url: string): string | null {
   try {
