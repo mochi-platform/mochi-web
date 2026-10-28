@@ -77,6 +77,20 @@ isOneToOne: false
       referencedColumns: ["id"]
     }
                   ]
+                },"ai_cache": {
+                  Row: {
+                    "expires_at": string,"key": string,"value": NonNullable<Json>
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "expires_at": string,"key": string,"value": NonNullable<Json>
+                  }
+                  Update: {
+                    "expires_at"?: string,"key"?: string,"value"?: NonNullable<Json>
+                  }
+                  Relationships: [
+                    
+                  ]
                 },"ai_credits_ledger": {
                   Row: {
                     "created_at": string,"delta": number,"id": string,"metadata": NonNullable<Json>,"reason": string,"source_ref": string | null,"user_id": string
@@ -373,14 +387,14 @@ isOneToOne: false
                   ]
                 },"flashcards": {
                   Row: {
-                    "back": string,"deck_id": string | null,"difficulty_rating": number | null,"front": string,"id": string,"last_reviewed_at": string | null,"review_count": number | null
+                    "back": string,"deck_id": string | null,"difficulty_rating": number | null,"due_at": string,"ease_factor": number,"front": string,"id": string,"interval_days": number,"last_reviewed_at": string | null,"repetitions": number,"review_count": number | null
                   }
                   ComputedFields: never
                   Insert: {
-                    "back": string,"deck_id"?: string | null,"difficulty_rating"?: number | null,"front": string,"id"?: string,"last_reviewed_at"?: string | null,"review_count"?: number | null
+                    "back": string,"deck_id"?: string | null,"difficulty_rating"?: number | null,"due_at"?: string,"ease_factor"?: number,"front": string,"id"?: string,"interval_days"?: number,"last_reviewed_at"?: string | null,"repetitions"?: number,"review_count"?: number | null
                   }
                   Update: {
-                    "back"?: string,"deck_id"?: string | null,"difficulty_rating"?: number | null,"front"?: string,"id"?: string,"last_reviewed_at"?: string | null,"review_count"?: number | null
+                    "back"?: string,"deck_id"?: string | null,"difficulty_rating"?: number | null,"due_at"?: string,"ease_factor"?: number,"front"?: string,"id"?: string,"interval_days"?: number,"last_reviewed_at"?: string | null,"repetitions"?: number,"review_count"?: number | null
                   }
                   Relationships: [
                     {
@@ -497,26 +511,6 @@ isOneToOne: false
       referencedColumns: ["id"]
     }
                   ]
-                },"joint_vouchers": {
-                  Row: {
-                    "created_at": string,"created_by": string,"description": string | null,"id": string,"is_redeemed": boolean,"points_cost": number,"redeemed_at": string | null,"redeemed_by": string | null,"shared_space_id": string,"title": string
-                  }
-                  ComputedFields: never
-                  Insert: {
-                    "created_at"?: string,"created_by": string,"description"?: string | null,"id"?: string,"is_redeemed"?: boolean,"points_cost": number,"redeemed_at"?: string | null,"redeemed_by"?: string | null,"shared_space_id": string,"title": string
-                  }
-                  Update: {
-                    "created_at"?: string,"created_by"?: string,"description"?: string | null,"id"?: string,"is_redeemed"?: boolean,"points_cost"?: number,"redeemed_at"?: string | null,"redeemed_by"?: string | null,"shared_space_id"?: string,"title"?: string
-                  }
-                  Relationships: [
-                    {
-      foreignKeyName: "joint_vouchers_shared_space_id_fkey"
-      columns: ["shared_space_id"]
-isOneToOne: false
-      referencedRelation: "shared_spaces"
-      referencedColumns: ["id"]
-    }
-                  ]
                 },"mochi_memory": {
                   Row: {
                     "content": string,"kind": string,"updated_at": string,"user_id": string
@@ -548,6 +542,46 @@ isOneToOne: false
       columns: ["user_id"]
 isOneToOne: false
       referencedRelation: "profiles"
+      referencedColumns: ["id"]
+    }
+                  ]
+                },"partner_checkins": {
+                  Row: {
+                    "day": string,"mood": number,"note": string | null,"space_id": string,"updated_at": string,"user_id": string
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "day": string,"mood": number,"note"?: string | null,"space_id": string,"updated_at"?: string,"user_id": string
+                  }
+                  Update: {
+                    "day"?: string,"mood"?: number,"note"?: string | null,"space_id"?: string,"updated_at"?: string,"user_id"?: string
+                  }
+                  Relationships: [
+                    {
+      foreignKeyName: "partner_checkins_space_id_fkey"
+      columns: ["space_id"]
+isOneToOne: false
+      referencedRelation: "partner_spaces"
+      referencedColumns: ["id"]
+    }
+                  ]
+                },"partner_notes": {
+                  Row: {
+                    "author_id": string,"content": string,"created_at": string,"id": string,"read_at": string | null,"space_id": string
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "author_id": string,"content": string,"created_at"?: string,"id"?: string,"read_at"?: string | null,"space_id": string
+                  }
+                  Update: {
+                    "author_id"?: string,"content"?: string,"created_at"?: string,"id"?: string,"read_at"?: string | null,"space_id"?: string
+                  }
+                  Relationships: [
+                    {
+      foreignKeyName: "partner_notes_space_id_fkey"
+      columns: ["space_id"]
+isOneToOne: false
+      referencedRelation: "partner_spaces"
       referencedColumns: ["id"]
     }
                   ]
@@ -607,14 +641,28 @@ isOneToOne: false
                   ]
                 },"profiles": {
                   Row: {
-                    "created_at": string | null,"full_name": string | null,"id": string,"is_admin": boolean | null,"mochi_name": string,"total_points": number | null,"wake_up_time": string | null
+                    "age_group": string | null,"app_mode": string,"created_at": string | null,"full_name": string | null,"id": string,"is_admin": boolean | null,"mochi_name": string,"total_points": number | null,"wake_up_time": string | null
                   }
                   ComputedFields: never
                   Insert: {
-                    "created_at"?: string | null,"full_name"?: string | null,"id": string,"is_admin"?: boolean | null,"mochi_name"?: string,"total_points"?: number | null,"wake_up_time"?: string | null
+                    "age_group"?: string | null,"app_mode"?: string,"created_at"?: string | null,"full_name"?: string | null,"id": string,"is_admin"?: boolean | null,"mochi_name"?: string,"total_points"?: number | null,"wake_up_time"?: string | null
                   }
                   Update: {
-                    "created_at"?: string | null,"full_name"?: string | null,"id"?: string,"is_admin"?: boolean | null,"mochi_name"?: string,"total_points"?: number | null,"wake_up_time"?: string | null
+                    "age_group"?: string | null,"app_mode"?: string,"created_at"?: string | null,"full_name"?: string | null,"id"?: string,"is_admin"?: boolean | null,"mochi_name"?: string,"total_points"?: number | null,"wake_up_time"?: string | null
+                  }
+                  Relationships: [
+                    
+                  ]
+                },"push_tokens": {
+                  Row: {
+                    "platform": string,"quiet_enabled": boolean,"quiet_end": number,"quiet_start": number,"token": string,"tz_offset_min": number,"updated_at": string,"user_id": string
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "platform"?: string,"quiet_enabled"?: boolean,"quiet_end"?: number,"quiet_start"?: number,"token": string,"tz_offset_min"?: number,"updated_at"?: string,"user_id": string
+                  }
+                  Update: {
+                    "platform"?: string,"quiet_enabled"?: boolean,"quiet_end"?: number,"quiet_start"?: number,"token"?: string,"tz_offset_min"?: number,"updated_at"?: string,"user_id"?: string
                   }
                   Relationships: [
                     
@@ -681,14 +729,14 @@ isOneToOne: false
                   ]
                 },"recipe_publications": {
                   Row: {
-                    "cook_time_minutes": number,"cuisine_type": string | null,"description": string | null,"difficulty": string,"generation_type": string,"id": string,"image_url": string | null,"ingredients_snapshot": NonNullable<Json>,"is_published": boolean,"owner_id": string,"owner_name": string,"prep_time_minutes": number,"published_at": string,"servings": number,"source_recipe_id": string,"steps_snapshot": NonNullable<Json>,"tags": (string)[],"title": string,"total_time_minutes": number,"updated_at": string
+                    "cook_time_minutes": number,"cuisine_type": string | null,"description": string | null,"difficulty": string,"generation_type": string,"hidden_reason": string | null,"id": string,"image_url": string | null,"ingredients_snapshot": NonNullable<Json>,"is_hidden": boolean,"is_published": boolean,"owner_id": string,"owner_name": string,"prep_time_minutes": number,"published_at": string,"servings": number,"source_recipe_id": string,"steps_snapshot": NonNullable<Json>,"tags": (string)[],"title": string,"total_time_minutes": number,"updated_at": string
                   }
                   ComputedFields: never
                   Insert: {
-                    "cook_time_minutes"?: number,"cuisine_type"?: string | null,"description"?: string | null,"difficulty": string,"generation_type"?: string,"id"?: string,"image_url"?: string | null,"ingredients_snapshot"?: NonNullable<Json>,"is_published"?: boolean,"owner_id": string,"owner_name"?: string,"prep_time_minutes"?: number,"published_at"?: string,"servings"?: number,"source_recipe_id": string,"steps_snapshot"?: NonNullable<Json>,"tags"?: (string)[],"title": string,"total_time_minutes"?: number,"updated_at"?: string
+                    "cook_time_minutes"?: number,"cuisine_type"?: string | null,"description"?: string | null,"difficulty": string,"generation_type"?: string,"hidden_reason"?: string | null,"id"?: string,"image_url"?: string | null,"ingredients_snapshot"?: NonNullable<Json>,"is_hidden"?: boolean,"is_published"?: boolean,"owner_id": string,"owner_name"?: string,"prep_time_minutes"?: number,"published_at"?: string,"servings"?: number,"source_recipe_id": string,"steps_snapshot"?: NonNullable<Json>,"tags"?: (string)[],"title": string,"total_time_minutes"?: number,"updated_at"?: string
                   }
                   Update: {
-                    "cook_time_minutes"?: number,"cuisine_type"?: string | null,"description"?: string | null,"difficulty"?: string,"generation_type"?: string,"id"?: string,"image_url"?: string | null,"ingredients_snapshot"?: NonNullable<Json>,"is_published"?: boolean,"owner_id"?: string,"owner_name"?: string,"prep_time_minutes"?: number,"published_at"?: string,"servings"?: number,"source_recipe_id"?: string,"steps_snapshot"?: NonNullable<Json>,"tags"?: (string)[],"title"?: string,"total_time_minutes"?: number,"updated_at"?: string
+                    "cook_time_minutes"?: number,"cuisine_type"?: string | null,"description"?: string | null,"difficulty"?: string,"generation_type"?: string,"hidden_reason"?: string | null,"id"?: string,"image_url"?: string | null,"ingredients_snapshot"?: NonNullable<Json>,"is_hidden"?: boolean,"is_published"?: boolean,"owner_id"?: string,"owner_name"?: string,"prep_time_minutes"?: number,"published_at"?: string,"servings"?: number,"source_recipe_id"?: string,"steps_snapshot"?: NonNullable<Json>,"tags"?: (string)[],"title"?: string,"total_time_minutes"?: number,"updated_at"?: string
                   }
                   Relationships: [
                     {
@@ -696,6 +744,26 @@ isOneToOne: false
       columns: ["source_recipe_id"]
 isOneToOne: true
       referencedRelation: "recipes"
+      referencedColumns: ["id"]
+    }
+                  ]
+                },"recipe_reports": {
+                  Row: {
+                    "created_at": string,"details": string | null,"id": string,"publication_id": string,"reason": string,"reporter_id": string,"status": string
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "created_at"?: string,"details"?: string | null,"id"?: string,"publication_id": string,"reason": string,"reporter_id": string,"status"?: string
+                  }
+                  Update: {
+                    "created_at"?: string,"details"?: string | null,"id"?: string,"publication_id"?: string,"reason"?: string,"reporter_id"?: string,"status"?: string
+                  }
+                  Relationships: [
+                    {
+      foreignKeyName: "recipe_reports_publication_id_fkey"
+      columns: ["publication_id"]
+isOneToOne: false
+      referencedRelation: "recipe_publications"
       referencedColumns: ["id"]
     }
                   ]
@@ -824,40 +892,6 @@ isOneToOne: false
       referencedRelation: "profiles"
       referencedColumns: ["id"]
     }
-                  ]
-                },"shared_space_members": {
-                  Row: {
-                    "id": string,"joined_at": string,"role": string,"shared_space_id": string,"user_id": string
-                  }
-                  ComputedFields: never
-                  Insert: {
-                    "id"?: string,"joined_at"?: string,"role"?: string,"shared_space_id": string,"user_id": string
-                  }
-                  Update: {
-                    "id"?: string,"joined_at"?: string,"role"?: string,"shared_space_id"?: string,"user_id"?: string
-                  }
-                  Relationships: [
-                    {
-      foreignKeyName: "shared_space_members_shared_space_id_fkey"
-      columns: ["shared_space_id"]
-isOneToOne: false
-      referencedRelation: "shared_spaces"
-      referencedColumns: ["id"]
-    }
-                  ]
-                },"shared_spaces": {
-                  Row: {
-                    "created_at": string,"created_by": string,"id": string,"invite_code": string | null,"name": string
-                  }
-                  ComputedFields: never
-                  Insert: {
-                    "created_at"?: string,"created_by": string,"id"?: string,"invite_code"?: string | null,"name": string
-                  }
-                  Update: {
-                    "created_at"?: string,"created_by"?: string,"id"?: string,"invite_code"?: string | null,"name"?: string
-                  }
-                  Relationships: [
-                    
                   ]
                 },"streak_recovery_plans": {
                   Row: {
@@ -1049,14 +1083,14 @@ isOneToOne: true
                   ]
                 },"vouchers": {
                   Row: {
-                    "color": string,"created_at": string | null,"description": string | null,"icon": string,"id": string,"is_redeemed": boolean | null,"points_cost": number,"redeemed_at": string | null,"redeemed_by": string | null,"space_id": string | null,"template_id": string | null,"title": string,"updated_by_partner": boolean,"user_id": string | null
+                    "color": string,"created_at": string | null,"created_by": string | null,"description": string | null,"icon": string,"id": string,"image_url": string | null,"is_redeemed": boolean | null,"mode": string,"points_cost": number,"redeemed_at": string | null,"redeemed_by": string | null,"space_id": string | null,"template_id": string | null,"title": string,"updated_by_partner": boolean,"user_id": string | null
                   }
                   ComputedFields: never
                   Insert: {
-                    "color"?: string,"created_at"?: string | null,"description"?: string | null,"icon"?: string,"id"?: string,"is_redeemed"?: boolean | null,"points_cost"?: number,"redeemed_at"?: string | null,"redeemed_by"?: string | null,"space_id"?: string | null,"template_id"?: string | null,"title": string,"updated_by_partner"?: boolean,"user_id"?: string | null
+                    "color"?: string,"created_at"?: string | null,"created_by"?: string | null,"description"?: string | null,"icon"?: string,"id"?: string,"image_url"?: string | null,"is_redeemed"?: boolean | null,"mode"?: string,"points_cost"?: number,"redeemed_at"?: string | null,"redeemed_by"?: string | null,"space_id"?: string | null,"template_id"?: string | null,"title": string,"updated_by_partner"?: boolean,"user_id"?: string | null
                   }
                   Update: {
-                    "color"?: string,"created_at"?: string | null,"description"?: string | null,"icon"?: string,"id"?: string,"is_redeemed"?: boolean | null,"points_cost"?: number,"redeemed_at"?: string | null,"redeemed_by"?: string | null,"space_id"?: string | null,"template_id"?: string | null,"title"?: string,"updated_by_partner"?: boolean,"user_id"?: string | null
+                    "color"?: string,"created_at"?: string | null,"created_by"?: string | null,"description"?: string | null,"icon"?: string,"id"?: string,"image_url"?: string | null,"is_redeemed"?: boolean | null,"mode"?: string,"points_cost"?: number,"redeemed_at"?: string | null,"redeemed_by"?: string | null,"space_id"?: string | null,"template_id"?: string | null,"title"?: string,"updated_by_partner"?: boolean,"user_id"?: string | null
                   }
                   Relationships: [
                     {
@@ -1097,14 +1131,35 @@ isOneToOne: false
 "admin_dashboard_stats":
 { Args: Record<PropertyKey, never>; Returns: Json
                            },
+"admin_grant_entitlement":
+{ Args: { "p_entitlement": string,"p_expires_at"?: string,"p_reason": string,"p_user_id": string }; Returns: undefined
+                           },
+"admin_list_grants":
+{ Args: Record<PropertyKey, never>; Returns: {
+              "created_at": string,"entitlement": string,"expires_at": string,"full_name": string,"granted_by": string,"id": string,"reason": string,"user_id": string
+            }[]
+                           },
+"admin_list_recipe_reports":
+{ Args: Record<PropertyKey, never>; Returns: {
+              "is_hidden": boolean,"last_report_at": string,"open_reports": number,"owner_name": string,"publication_id": string,"reasons": (string)[],"title": string
+            }[]
+                           },
+"admin_resolve_recipe_reports":
+{ Args: { "p_hide": boolean,"p_publication_id": string }; Returns: undefined
+                           },
+"admin_revenue_summary":
+{ Args: Record<PropertyKey, never>; Returns: {
+              "active_count": number,"cancelled_30d": number,"product_id": string,"renewing_count": number,"store": string
+            }[]
+                           },
+"admin_revoke_grant":
+{ Args: { "p_grant_id": string }; Returns: undefined
+                           },
 "apply_plan_limits_for_ai":
 { Args: { "p_metadata"?: Json,"p_reason": string,"p_source_ref"?: string }; Returns: Json
                            },
 "award_points":
 { Args: { "p_event": string,"p_ref"?: string }; Returns: number
-                           },
-"can_access_space":
-{ Args: { "p_shared_space_id": string }; Returns: boolean
                            },
 "check_ai_allowance":
 { Args: Record<PropertyKey, never>; Returns: Json
@@ -1117,6 +1172,9 @@ isOneToOne: false
                            },
 "create_partner_invite":
 { Args: Record<PropertyKey, never>; Returns: string
+                           },
+"create_partner_voucher":
+{ Args: { "p_color": string,"p_description": string,"p_icon": string,"p_image_url"?: string,"p_mode": string,"p_points_cost": number,"p_space_id": string,"p_template_id"?: string,"p_title": string }; Returns: string
                            },
 "generate_voucher":
 { Args: { "p_template_id": string }; Returns: string
@@ -1161,11 +1219,17 @@ isOneToOne: false
 "is_admin_user":
 { Args: Record<PropertyKey, never>; Returns: boolean
                            },
+"is_space_member":
+{ Args: { "p_space_id": string }; Returns: boolean
+                           },
 "leave_partner_space":
 { Args: { "p_space_id": string }; Returns: undefined
                            },
 "log_cycle_summary":
 { Args: { "p_cycle_length"?: number,"p_period_end"?: string,"p_period_start": string,"p_source"?: string }; Returns: undefined
+                           },
+"mark_partner_notes_read":
+{ Args: { "p_space_id": string }; Returns: undefined
                            },
 "plan_features":
 { Args: { "p_is_premium": boolean }; Returns: Json
@@ -1173,11 +1237,32 @@ isOneToOne: false
 "publish_recipe_to_catalog":
 { Args: { "p_generation_type"?: string,"p_recipe_id": string }; Returns: string
                            },
+"purge_ai_cache":
+{ Args: Record<PropertyKey, never>; Returns: undefined
+                           },
 "purge_ai_gateway_requests":
 { Args: Record<PropertyKey, never>; Returns: undefined
                            },
+"redeem_voucher":
+{ Args: { "p_voucher_id": string }; Returns: undefined
+                           },
 "refresh_mochi_memory":
 { Args: Record<PropertyKey, never>; Returns: undefined
+                           },
+"refresh_weekly_mochi_memory":
+{ Args: Record<PropertyKey, never>; Returns: number
+                           },
+"register_push_token":
+{ Args: { "p_platform"?: string,"p_quiet_enabled"?: boolean,"p_quiet_end"?: number,"p_quiet_start"?: number,"p_token": string,"p_tz_offset_min"?: number }; Returns: undefined
+                           },
+"report_recipe":
+{ Args: { "p_details"?: string,"p_publication_id": string,"p_reason": string }; Returns: undefined
+                           },
+"review_flashcard":
+{ Args: { "p_card_id": string,"p_quality": number }; Returns: Json
+                           },
+"send_partner_note":
+{ Args: { "p_content": string,"p_space_id": string }; Returns: string
                            },
 "server_ai_gateway_check":
 { Args: { "p_model": string,"p_user_id": string }; Returns: boolean
@@ -1197,14 +1282,28 @@ isOneToOne: false
 "server_sync_subscription":
 { Args: { "p_auto_renew": boolean,"p_entitlement_id": string,"p_event_id": string,"p_event_type": string,"p_external_customer_id": string,"p_payload": Json,"p_period_end": string,"p_period_start": string,"p_product_id": string,"p_status": string,"p_store": string,"p_user_id": string }; Returns: Json
                            },
+"server_voucher_push_targets":
+{ Args: { "p_caller": string,"p_voucher_id": string }; Returns: {
+              "quiet_enabled": boolean,"quiet_end": number,"quiet_start": number,"title": string,"token": string,"tz_offset_min": number
+            }[]
+                           },
 "set_admin":
 { Args: { "p_user_id": string,"p_value": boolean }; Returns: undefined
+                           },
+"set_age_group":
+{ Args: { "p_group": string,"p_guardian_ok"?: boolean }; Returns: undefined
+                           },
+"set_app_mode":
+{ Args: { "p_mode": string }; Returns: undefined
                            },
 "set_consent":
 { Args: { "p_granted": boolean,"p_kind": string }; Returns: undefined
                            },
 "set_mochi_tone":
 { Args: { "p_tone": string }; Returns: undefined
+                           },
+"space_is_plus":
+{ Args: { "p_space_id": string }; Returns: boolean
                            },
 "spend_mochi_tokens":
 { Args: { "p_amount": number,"p_note"?: string,"p_source": string,"p_user_id": string }; Returns: number
@@ -1220,6 +1319,12 @@ isOneToOne: false
                            },
 "update_partner_space_prefs":
 { Args: { "p_fields": Json,"p_space_id": string }; Returns: Json
+                           },
+"upsert_partner_checkin":
+{ Args: { "p_day": string,"p_mood": number,"p_note"?: string,"p_space_id": string }; Returns: undefined
+                           },
+"user_is_premium":
+{ Args: { "p_uid": string }; Returns: boolean
                            }
           }
           Enums: {
