@@ -4,7 +4,6 @@ import {
   BadgeCheck,
   BookOpenText,
   BrainCircuit,
-  Download,
   Dumbbell,
   Gem,
   HeartHandshake,
@@ -81,14 +80,12 @@ const trustBadges = [
   },
 ] as const
 
-const APK_RELEASE_URL = 'https://github.com/mochi-platform/mochi-mobile/releases/latest'
-
 export function LandingPage() {
   const { session, loading } = useSession()
   const shouldReduceMotion = useReducedMotion()
 
-  const primaryHref = loading ? '/login' : session ? '/dashboard' : '/login'
-  const primaryLabel = loading ? 'Cargando...' : session ? 'Ir a mi dashboard' : 'Comenzar gratis'
+  const primaryHref = loading ? '/login' : session ? '/account' : '/login'
+  const primaryLabel = loading ? 'Cargando...' : session ? 'Mi cuenta' : 'Iniciar sesión'
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top,_#fff7ed,_#fdf2f8_45%,_#eff6ff_90%)] text-purple-950">
@@ -158,21 +155,10 @@ export function LandingPage() {
                 <a href="#que-es-mochi">Ver cómo funciona</a>
               </Button>
 
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="h-11 rounded-2xl border-emerald-200 bg-emerald-50/80 px-6 text-emerald-900 hover:bg-emerald-100"
-              >
-                <a href={APK_RELEASE_URL} target="_blank" rel="noreferrer noopener">
-                  Instalar app en Android
-                  <Download className="h-4 w-4" />
-                </a>
-              </Button>
             </div>
 
             <p className="mt-4 text-sm font-semibold text-purple-700">
-              Disponible en web y móvil para acompañarte durante todo el semestre.
+              Mochi llega pronto a Google Play. Esta web es para administrar tu cuenta.
             </p>
           </motion.div>
 

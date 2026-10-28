@@ -7,7 +7,7 @@ type Section = {
   content: React.ReactNode
 }
 
-const LAST_UPDATED = '1 de enero de 2026'
+const LAST_UPDATED = '28 de octubre de 2026'
 const APP_NAME = 'Mochi'
 const CONTACT_EMAIL = 'soporte@siramong.tech'
 const COMPANY_NAME = 'SirAmong'
@@ -163,6 +163,33 @@ const sections: Section[] = [
           Las recetas y sugerencias generadas por IA son de carácter informativo y no constituyen
           asesoramiento médico o nutricional profesional. Consulta siempre a profesionales de la
           salud ante cualquier necesidad dietética específica.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: 'planes',
+    title: 'Planes, suscripciones y anuncios',
+    content: (
+      <>
+        <p>
+          {APP_NAME} tiene un plan gratuito y un plan Premium de pago (mensual o anual) que se compra y se cancela
+          en Google Play. En el plan gratuito puedes ver anuncios con recompensa de forma opcional para obtener
+          créditos de IA; Premium no muestra anuncios. Los precios y las condiciones de renovación y reembolso son
+          los de Google Play.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: 'edad-salud',
+    title: 'Edad mínima y aviso médico',
+    content: (
+      <>
+        <p>
+          {APP_NAME} está dirigida a personas de 16 años o más. {APP_NAME} no es un dispositivo médico, no
+          diagnostica ni trata enfermedades y no sirve como método anticonceptivo. Ante cualquier malestar o duda de
+          salud, consulta con un profesional.
         </p>
       </>
     ),

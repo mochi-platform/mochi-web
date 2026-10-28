@@ -7,308 +7,213 @@ type Section = {
   content: React.ReactNode
 }
 
-const LAST_UPDATED = '1 de enero de 2026'
+const LAST_UPDATED = '28 de octubre de 2026'
 const APP_NAME = 'Mochi'
 const CONTACT_EMAIL = 'privacidad@siramong.tech'
 const COMPANY_NAME = 'SirAmong'
 
 const sections: Section[] = [
   {
-    id: 'introduccion',
-    title: '1. Introducción',
+    id: 'responsable',
+    title: '1. Quién trata tus datos',
     content: (
       <>
         <p>
-          Bienvenida a {APP_NAME}. Esta Política de Privacidad describe cómo {COMPANY_NAME}{' '}
-          (&quot;nosotros&quot;, &quot;nuestro&quot; o &quot;la empresa&quot;) recopila, usa,
-          almacena y protege tu información personal cuando utilizas nuestra aplicación móvil y
-          plataforma web (colectivamente, el &quot;Servicio&quot;).
+          {COMPANY_NAME} es el responsable del tratamiento de los datos de {APP_NAME}, conforme a la Ley
+          Orgánica de Protección de Datos Personales de Ecuador (LOPDP). Para cualquier consulta o para ejercer
+          tus derechos escribe a {CONTACT_EMAIL}.
         </p>
         <p className="mt-3">
-          Al crear una cuenta o usar {APP_NAME}, aceptas las prácticas descritas en esta política.
-          Te recomendamos leerla con atención. Si tienes dudas, puedes contactarnos en cualquier
-          momento.
+          {APP_NAME} está dirigida a mujeres de 16 años o más. Si tienes entre 16 y 17 años, tratamos tus datos
+          con especial cuidado y no te mostramos anuncios personalizados.
         </p>
       </>
     ),
   },
   {
-    id: 'datos-recopilados',
-    title: '2. Datos que recopilamos',
+    id: 'datos',
+    title: '2. Qué datos tratamos',
     content: (
-      <>
-        <p>Recopilamos los siguientes tipos de información:</p>
-        <div className="mt-3 space-y-4">
-          <div className="rounded-2xl border border-purple-100 bg-purple-50/60 p-4">
-            <p className="text-sm font-bold text-purple-900">Datos de cuenta</p>
-            <p className="mt-1 text-sm text-purple-800">
-              Correo electrónico y contraseña (almacenada de forma cifrada) al registrarte. Si
-              accedes con Google, recibimos tu nombre y foto de perfil públicos.
-            </p>
-          </div>
-          <div className="rounded-2xl border border-purple-100 bg-purple-50/60 p-4">
-            <p className="text-sm font-bold text-purple-900">Datos de perfil</p>
-            <p className="mt-1 text-sm text-purple-800">
-              Nombre, hora de despertar y preferencias de módulos que tú misma configuras dentro
-              de la app.
-            </p>
-          </div>
-          <div className="rounded-2xl border border-purple-100 bg-purple-50/60 p-4">
-            <p className="text-sm font-bold text-purple-900">Contenido generado por ti</p>
-            <p className="mt-1 text-sm text-purple-800">
-              Bloques de estudio, sesiones, exámenes, rutinas, hábitos, metas, registros de ánimo,
-              diario de gratitud, recetas y vales que creas dentro de la plataforma.
-            </p>
-          </div>
-          <div className="rounded-2xl border border-purple-100 bg-purple-50/60 p-4">
-            <p className="text-sm font-bold text-purple-900">Datos de salud (opcional, solo móvil)</p>
-            <p className="mt-1 text-sm text-purple-800">
-              Si conectas Health Connect en Android, podemos leer registros de menstruación para
-              personalizar recomendaciones. Estos datos{' '}
-              <strong>nunca salen de tu dispositivo</strong> ni se almacenan en nuestros servidores.
-            </p>
-          </div>
-          <div className="rounded-2xl border border-purple-100 bg-purple-50/60 p-4">
-            <p className="text-sm font-bold text-purple-900">Datos de uso</p>
-            <p className="mt-1 text-sm text-purple-800">
-              Información técnica anónima como tipo de dispositivo, versión del sistema operativo y
-              métricas de uso general para mejorar el Servicio.
-            </p>
-          </div>
-        </div>
-      </>
+      <ul className="list-disc space-y-1 pl-5">
+        <li>Cuenta: correo electrónico y, si inicias con Google, tu identificador de Google.</li>
+        <li>
+          Perfil y uso de los módulos que tú activas: nombre, hábitos, sesiones de estudio, exámenes, metas,
+          ánimo, gratitud, ejercicio, recetas, puntos y logros.
+        </li>
+        <li>Preferencias y configuración de la app, y tus consentimientos.</li>
+        <li>Estado de tu plan (gratis o Premium) y, si compras, datos de la transacción que nos informa Google Play.</li>
+        <li>Datos técnicos mínimos necesarios para el funcionamiento y la seguridad del servicio, incluidos reportes de errores (Sentry) sin datos personales.</li>
+        <li>
+          Estadísticas de uso (PostHog) solo si las activas en Ajustes: qué módulos usas y eventos como compras, con un
+          identificador anónimo. Nunca incluyen datos de salud ni lo que escribes.
+        </li>
+      </ul>
     ),
   },
   {
-    id: 'uso-de-datos',
-    title: '3. Cómo usamos tus datos',
-    content: (
-      <>
-        <p>Utilizamos tu información exclusivamente para:</p>
-        <ul className="mt-3 space-y-2">
-          {[
-            'Proveer y mantener el Servicio, incluyendo la sincronización entre dispositivos.',
-            'Personalizar tu experiencia y mostrarte recomendaciones relevantes según tus módulos activos.',
-            'Calcular puntos, logros y rachas dentro del sistema de gamificación.',
-            'Enviarte notificaciones que tú misma configuras (recordatorios de estudio, hábitos, etc.).',
-            'Generar recetas y sugerencias mediante inteligencia artificial usando los prompts que tú proporcionas.',
-            'Mejorar la calidad del Servicio a través de análisis agregados y anónimos.',
-            'Responderte cuando nos contactas por soporte.',
-          ].map((item) => (
-            <li key={item} className="flex items-start gap-2 text-sm text-purple-900">
-              <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple-400" />
-              {item}
-            </li>
-          ))}
-        </ul>
-        <p className="mt-4 rounded-2xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900">
-          <strong>Importante:</strong> Nunca vendemos, alquilamos ni compartimos tus datos
-          personales con terceros con fines publicitarios. {APP_NAME} no muestra anuncios.
-        </p>
-      </>
-    ),
-  },
-  {
-    id: 'ia-y-openrouter',
-    title: '4. Inteligencia artificial y servicios de terceros',
+    id: 'ciclo',
+    title: '3. Ciclo menstrual (dato de salud)',
     content: (
       <>
         <p>
-          {APP_NAME} utiliza modelos de inteligencia artificial a través de{' '}
-          <strong>OpenRouter</strong> para funciones como generación de recetas, motivación diaria y
-          sugerencias de ejercicios. Cuando usas estas funciones:
+          El ciclo es un dato sensible. Se calcula en tu teléfono, a partir de lo que registras tú o de lo que
+          autorices leer en Health Connect. <strong>No se envía a la inteligencia artificial.</strong>
         </p>
-        <ul className="mt-3 space-y-2">
-          {[
-            'Tu prompt o texto de entrada se envía de forma segura a OpenRouter para generar una respuesta.',
-            'No se envían datos de identificación personal (nombre, correo, ID) junto con las solicitudes de IA.',
-            'Las respuestas generadas se almacenan en tu cuenta para que puedas acceder a ellas.',
-            'Los datos de salud (ciclo menstrual) solo se usan como contexto local en tu dispositivo; nunca se envían a servicios de IA.',
-          ].map((item) => (
-            <li key={item} className="flex items-start gap-2 text-sm text-purple-900">
-              <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple-400" />
-              {item}
-            </li>
-          ))}
-        </ul>
-        <p className="mt-4 text-sm text-purple-800">
-          También usamos <strong>Supabase</strong> como proveedor de base de datos y autenticación.
-          Supabase almacena tus datos en servidores seguros con cifrado en tránsito y en reposo.
-          Puedes consultar su política de privacidad en{' '}
-          <a
-            href="https://supabase.com/privacy"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-semibold text-purple-600 underline underline-offset-2 hover:text-purple-800"
-          >
-            supabase.com/privacy
-          </a>
-          .
+        <p className="mt-3">
+          Solo si lo activas en Ajustes → Privacidad de tu ciclo (viene apagado), guardamos en nuestro servidor un
+          resumen mínimo: la fecha de inicio y la duración de tu ciclo. Lo usamos únicamente para que tu pareja vea
+          tu fase en Duo si tú decides compartirla. Puedes retirar el consentimiento en cualquier momento y esos
+          datos se borran del servidor.
+        </p>
+        <p className="mt-3">
+          {APP_NAME} no es un dispositivo médico ni sirve como método anticonceptivo.
         </p>
       </>
     ),
   },
   {
-    id: 'almacenamiento',
-    title: '5. Almacenamiento y seguridad',
+    id: 'ia',
+    title: '4. Inteligencia artificial',
     content: (
       <>
         <p>
-          Tus datos se almacenan en servidores de Supabase con las siguientes medidas de
-          protección:
+          Las funciones de IA envían a nuestro servidor el texto que escribes y contexto genérico de la tarea (por
+          ejemplo, un nivel de energía baja, media o alta). Si activas la Memoria de Mochi (sección 5), también
+          enviamos el resumen de esa memoria: títulos de tus metas, materias de tus próximos exámenes y tu racha.
+          Nunca enviamos tu nombre, tu correo ni datos de tu ciclo. Nuestro servidor reenvía la solicitud a OpenRouter, que la procesa con modelos de terceros.
         </p>
-        <ul className="mt-3 space-y-2">
-          {[
-            'Cifrado en tránsito mediante TLS 1.2 o superior en todas las comunicaciones.',
-            'Cifrado en reposo para todos los datos almacenados en la base de datos.',
-            'Row Level Security (RLS) en todas las tablas: solo tú puedes acceder a tus propios datos.',
-            'Contraseñas almacenadas con hash seguro; nunca en texto plano.',
-            'Autenticación de dos factores disponible a través de Google OAuth.',
-          ].map((item) => (
-            <li key={item} className="flex items-start gap-2 text-sm text-purple-900">
-              <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple-400" />
-              {item}
-            </li>
-          ))}
-        </ul>
-        <p className="mt-4 text-sm text-purple-800">
-          Aunque implementamos medidas de seguridad estándar de la industria, ningún sistema es
-          100% infalible. En caso de una brecha de seguridad que afecte tus datos, te notificaremos
-          conforme a la legislación aplicable.
+        <p className="mt-3">
+          Algunos modelos gratuitos pueden registrar el contenido de las solicitudes. Por eso te pedimos no escribir
+          datos personales ni de salud en los campos de texto libre de la IA ni en los títulos de tus metas y exámenes. Las respuestas pueden contener errores.
         </p>
       </>
     ),
   },
   {
-    id: 'retencion',
-    title: '6. Retención de datos',
+    id: 'memoria',
+    title: '5. Memoria de Mochi',
     content: (
       <p>
-        Conservamos tus datos mientras tu cuenta esté activa. Si eliminas tu cuenta, tus datos
-        personales serán eliminados de nuestros servidores activos en un plazo de{' '}
-        <strong>30 días</strong>. Algunos datos pueden permanecer en copias de respaldo cifradas
-        durante un período adicional de hasta <strong>90 días</strong> antes de su eliminación
-        permanente. Los datos de salud leídos de Health Connect nunca se almacenan en nuestros
-        servidores y se procesan exclusivamente en tu dispositivo.
+        Es opcional y viene apagada. Antes de activarla te mostramos qué se envía. Si la activas, guardamos un resumen corto de tus metas activas, tus próximos
+        exámenes, tu racha y el tono que prefieres, y lo enviamos a la IA como contexto para personalizar las
+        respuestas. Nunca incluye datos de salud. Puedes verlo, borrarlo o desactivarlo en Ajustes → Lo que Mochi
+        recuerda; al desactivarlo se borra.
+      </p>
+    ),
+  },
+  {
+    id: 'anuncios',
+    title: '6. Anuncios',
+    content: (
+      <p>
+        En el plan gratuito puedes ver, de forma opcional, anuncios con recompensa (Google AdMob) para obtener
+        créditos extra de IA. Nunca se muestran a quienes tienen Premium. Los anuncios para menores de 18 años no
+        son personalizados. Puedes gestionar tu consentimiento de publicidad desde la app.
+      </p>
+    ),
+  },
+  {
+    id: 'pagos',
+    title: '7. Compras y suscripciones',
+    content: (
+      <p>
+        Los pagos los procesa Google Play. Usamos RevenueCat para validar tu suscripción; no recibimos los datos de
+        tu tarjeta. Las suscripciones se gestionan y se cancelan desde Google Play.
+      </p>
+    ),
+  },
+  {
+    id: 'duo',
+    title: '8. Mochi Duo',
+    content: (
+      <p>
+        Duo vincula tu cuenta con la de tu pareja mediante un código de invitación que expira a los 7 días. Tú decides,
+        dato por dato, qué ve tu pareja (ciclo, ánimo, estudio, ejercicio, hábitos, cocina). Todo está apagado por
+        defecto y puedes cambiarlo o salir del espacio cuando quieras.
+      </p>
+    ),
+  },
+  {
+    id: 'base-legal',
+    title: '9. Para qué los usamos y base legal',
+    content: (
+      <ul className="list-disc space-y-1 pl-5">
+        <li>Prestarte el servicio que pides al crear tu cuenta (ejecución del contrato).</li>
+        <li>Los datos de salud y los consentimientos opcionales: tu consentimiento expreso, que puedes retirar.</li>
+        <li>Seguridad y prevención de abuso: nuestro interés legítimo.</li>
+        <li>Facturación: obligación legal.</li>
+      </ul>
+    ),
+  },
+  {
+    id: 'conservacion',
+    title: '10. Cuánto tiempo los conservamos',
+    content: (
+      <p>
+        Mientras tengas la cuenta. Si la eliminas, borramos tus datos de forma permanente. Los registros de
+        facturación se conservan sin datos personales por obligaciones contables.
       </p>
     ),
   },
   {
     id: 'derechos',
-    title: '7. Tus derechos',
-    content: (
-      <>
-        <p>Tienes derecho a:</p>
-        <div className="mt-3 grid gap-3 sm:grid-cols-2">
-          {[
-            { title: 'Acceso', desc: 'Solicitar una copia de todos los datos que tenemos sobre ti.' },
-            { title: 'Rectificación', desc: 'Corregir datos incorrectos o incompletos desde los ajustes de la app.' },
-            { title: 'Eliminación', desc: 'Solicitar la eliminación completa de tu cuenta y datos asociados.' },
-            { title: 'Portabilidad', desc: 'Recibir tus datos en un formato estructurado y legible por máquina.' },
-            { title: 'Oposición', desc: 'Oponerte al procesamiento de tus datos en determinadas circunstancias.' },
-            { title: 'Limitación', desc: 'Solicitar que limitemos el procesamiento de tus datos en ciertos casos.' },
-          ].map((right) => (
-            <div key={right.title} className="rounded-2xl border border-purple-100 bg-purple-50/60 p-3">
-              <p className="text-sm font-bold text-purple-900">{right.title}</p>
-              <p className="mt-1 text-xs text-purple-700">{right.desc}</p>
-            </div>
-          ))}
-        </div>
-        <p className="mt-4 text-sm text-purple-800">
-          Para ejercer cualquiera de estos derechos, escríbenos a{' '}
-          <a
-            href={`mailto:${CONTACT_EMAIL}`}
-            className="font-semibold text-purple-600 underline underline-offset-2 hover:text-purple-800"
-          >
-            {CONTACT_EMAIL}
-          </a>
-          . Responderemos en un plazo máximo de <strong>30 días hábiles</strong>.
-        </p>
-      </>
-    ),
-  },
-  {
-    id: 'menores',
-    title: '8. Menores de edad',
-    content: (
-      <p>
-        {APP_NAME} está diseñada para personas mayores de <strong>13 años</strong>. No recopilamos
-        intencionadamente datos de menores de 13 años. Si eres padre, madre o tutor y crees que tu
-        hija menor de 13 años ha creado una cuenta, contáctanos en{' '}
-        <a
-          href={`mailto:${CONTACT_EMAIL}`}
-          className="font-semibold text-purple-600 underline underline-offset-2 hover:text-purple-800"
-        >
-          {CONTACT_EMAIL}
-        </a>{' '}
-        y eliminaremos la cuenta de inmediato.
-      </p>
-    ),
-  },
-  {
-    id: 'cookies',
-    title: '9. Cookies y almacenamiento local',
+    title: '11. Tus derechos',
     content: (
       <>
         <p>
-          La versión web de {APP_NAME} utiliza <strong>localStorage</strong> y cookies de sesión
-          estrictamente necesarias para mantener tu sesión iniciada. No utilizamos cookies de
-          seguimiento ni publicidad de terceros.
+          Tienes derecho de acceso, rectificación, eliminación, oposición, portabilidad, suspensión del tratamiento y a
+          no ser objeto de decisiones basadas únicamente en tratamientos automatizados.
         </p>
-        <p className="mt-3 text-sm text-purple-800">
-          La aplicación móvil utiliza <strong>AsyncStorage</strong> para guardar preferencias
-          locales como configuración de notificaciones y caché de datos de ciclo. Estos datos
-          permanecen en tu dispositivo y puedes eliminarlos desinstalando la aplicación.
-        </p>
+        <ul className="mt-3 list-disc space-y-1 pl-5">
+          <li>
+            Exportar tus datos y eliminar tu cuenta: en la web, en{' '}
+            <Link className="font-bold underline" to="/account">Mi cuenta</Link>, o en la app desde Ajustes.
+          </li>
+          <li>Cualquier otro derecho: escribe a {CONTACT_EMAIL}.</li>
+          <li>
+            Si consideras que no atendimos tu solicitud, puedes acudir a la Superintendencia de Protección de Datos
+            Personales de Ecuador.
+          </li>
+        </ul>
       </>
+    ),
+  },
+  {
+    id: 'terceros',
+    title: '12. Con quién compartimos datos y transferencias internacionales',
+    content: (
+      <>
+        <p>Usamos proveedores que tratan datos por encargo nuestro:</p>
+        <ul className="mt-3 list-disc space-y-1 pl-5">
+          <li>Supabase (alojamiento y base de datos, Estados Unidos).</li>
+          <li>OpenRouter y sus proveedores de modelos (IA).</li>
+          <li>Google (inicio de sesión, Play, AdMob y Health Connect).</li>
+          <li>RevenueCat (validación de suscripciones).</li>
+          <li>Sentry (reportes de errores) y PostHog (estadísticas, solo con tu consentimiento).</li>
+        </ul>
+        <p className="mt-3">No vendemos tus datos.</p>
+      </>
+    ),
+  },
+  {
+    id: 'seguridad',
+    title: '13. Seguridad',
+    content: (
+      <p>
+        Aplicamos controles de acceso por usuaria a nivel de base de datos, cifrado en tránsito y verificación en el
+        servidor de puntos, planes y créditos. Si ocurriera una brecha que afecte tus datos, la notificaremos a la
+        autoridad y a ti en los plazos que fija la ley.
+      </p>
     ),
   },
   {
     id: 'cambios',
-    title: '10. Cambios en esta política',
+    title: '14. Cambios a esta política',
     content: (
       <p>
-        Podemos actualizar esta Política de Privacidad ocasionalmente. Cuando hagamos cambios
-        materiales, te notificaremos mediante un aviso visible en la app o por correo electrónico
-        al menos <strong>14 días antes</strong> de que entren en vigor. La fecha de la última
-        actualización siempre estará indicada al inicio de este documento. El uso continuado del
-        Servicio después de esa fecha constituye la aceptación de la política actualizada.
+        Si cambiamos esta política de forma importante te avisaremos en la app. La fecha de la última actualización
+        aparece arriba.
       </p>
-    ),
-  },
-  {
-    id: 'contacto',
-    title: '11. Contacto',
-    content: (
-      <>
-        <p>
-          Si tienes preguntas, inquietudes o solicitudes relacionadas con tu privacidad, puedes
-          contactarnos por cualquiera de estos medios:
-        </p>
-        <div className="mt-3 rounded-2xl border border-purple-200 bg-white p-4">
-          <p className="text-sm font-bold text-purple-900">{COMPANY_NAME}</p>
-          <p className="mt-2 text-sm text-purple-800">
-            Correo de privacidad:{' '}
-            <a
-              href={`mailto:${CONTACT_EMAIL}`}
-              className="font-semibold text-purple-600 underline underline-offset-2 hover:text-purple-800"
-            >
-              {CONTACT_EMAIL}
-            </a>
-          </p>
-          <p className="mt-1 text-sm text-purple-800">
-            Sitio web:{' '}
-            <a
-              href="https://mochi.siramong.tech"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-semibold text-purple-600 underline underline-offset-2 hover:text-purple-800"
-            >
-              mochi.siramong.tech
-            </a>
-          </p>
-        </div>
-      </>
     ),
   },
 ]
